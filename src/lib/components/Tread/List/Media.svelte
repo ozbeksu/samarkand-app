@@ -5,13 +5,12 @@
 </script>
 
 {#if attachments?.length}
-	<div class="my-4 -ml-8 -mr-8">
-		{#each attachments as attachment}
-			<img
-				class="border-brand border-t border-t w-full"
-				src={attachment.url}
-				alt={attachment.file_name}
-			/>
-		{/each}
+	<div
+		class={`my-4 -ml-8 -mr-8 h-96 flex items-end overflow-hidden bg-no-repeat bg-cover bg-top ${
+			$$props.class ?? ""
+		}`}
+		style:background-image={`url(${attachments[0].url})`}
+	>
+		<div class="post-image-shade h-32 w-full" />
 	</div>
 {/if}

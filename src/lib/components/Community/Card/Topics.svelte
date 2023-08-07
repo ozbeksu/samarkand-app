@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DTO } from "$lib/types";
 
-	import Inbox2Line from "svelte-remixicon/lib/icons/Inbox2Line.svelte";
+	import DiscussLine from "svelte-remixicon/lib/icons/DiscussLine.svelte";
 
 	export let list: DTO.Topic[] | undefined;
 </script>
@@ -13,7 +13,7 @@
 				href={`/topics/${topic.slug}`}
 				class="text-secondary inline-flex items-center mr-2 text-sm"
 			>
-				<Inbox2Line class="text-secondary h-5 w-5 mr-1" />
+				<DiscussLine class="text-secondary h-5 w-5 mr-1" />
 				{topic.name}
 			</a>
 		{/each}

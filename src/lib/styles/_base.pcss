@@ -4,7 +4,7 @@ body {
 
 .inner-header {
     width: var(--list-width);
-    @apply backdrop sticky top-0 z-40 border-b border-brand;
+    @apply backdrop sticky top-0 z-40 border-b border-black dark:border-white border-opacity-10;
 }
 
 .sidebar-col,
@@ -19,12 +19,12 @@ body {
 
     &::-webkit-scrollbar-button,
     &::-webkit-scrollbar-thumb {
-        @apply bg-brand-500;
+        @apply gradient-to-b-brand;
     }
 
     &::-webkit-scrollbar-thumb {
         &:hover {
-            @apply bg-brand-500;
+            @apply gradient-to-b-brand;
         }
     }
 
@@ -60,6 +60,10 @@ body {
         &:hover {
             img.post-image {
                 box-shadow: 0.5rem 0.5rem 0 0 theme('colors.brand.500');
+            }
+
+            .post-image-shade {
+                @apply from-light-900 dark:from-dark-900;
             }
         }
     }

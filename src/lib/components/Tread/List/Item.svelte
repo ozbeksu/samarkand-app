@@ -16,6 +16,7 @@
 				attachments={tread?.attachments}
 				content={tread?.content}
 				title={tread.title}
+				community={tread?.community?.slug}
 				slug={tread.slug}
 			/>
 			<Tags list={tread?.tags} />

@@ -7,6 +7,6 @@
 
 {#if list?.length}
 	{#each list as tread}
-		<Item {tread} class="p-8 border-r border-brand" />
+		<Item {tread} class={`p-8 border-brand border-r ${$$props.class ?? ""}`} />
 	{/each}
 {/if}

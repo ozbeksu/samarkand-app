@@ -7,7 +7,7 @@
 </script>
 
 {#if links?.length}
-	<div class={`inner-header center flex pb-6 pt-10  ${$$props.class}`}>
+	<div class={`inner-header center flex pb-6 pt-10  ${$$props.class ?? ""}`}>
 		<ul class="justify-center list-none">
 			{#each links as link}
 				<a
