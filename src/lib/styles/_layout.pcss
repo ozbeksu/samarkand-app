@@ -1,0 +1,70 @@
+.scroll-height {
+    @apply overflow-y-auto overflow-x-hidden -mt-4;
+    height: calc(100vh + 2rem);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    @apply h-screen overflow-hidden;
+}
+
+.icon-bar-col {
+    @apply fixed z-50 flex h-full flex-col items-center justify-between pb-4 bg-gradient-to-b from-brand-500 dark:from-brand-800 to-sky-500 dark:to-sky-800;
+    width: var(--icon-bar-width);
+}
+
+.sidebar-col {
+    @apply scroll-height relative bg-white dark:bg-black border-r border-brand;
+    margin-left: var(--icon-bar-width);
+    width: var(--sidebar-width);
+
+    & > div {
+        @apply border-r border-brand px-8 py-12;
+        min-height: calc(100vh + 2rem);
+    }
+
+    &.no-scroll {
+        @apply border-none;
+        height: calc(100vh + 2rem);
+    }
+
+    &.hide {
+        --sidebar-width: 0;
+        margin-left: 0;
+    }
+}
+
+.list-col {
+    @apply scroll-height relative flex-col bg-light-950 dark:bg-dark-950 border-r border-brand;
+    width: var(--list-width);
+
+    &.no-scroll {
+        @apply border-r border-black dark:border-white;
+        height: calc(100vh + 2rem);
+    }
+}
+
+.content-col {
+    @apply scroll-height relative flex-col bg-light-950  dark:bg-dark-950;
+    width: var(--content-width);
+
+    &.no-scroll {
+        @apply border-r border-black dark:border-white;
+        height: calc(100vh + 2rem);
+    }
+}
+
+.sidebar-col.hide ~ .content-col {
+    --content-width: calc(100vw - calc(var(--icon-bar-width)));
+}
+
+.details-col {
+    @apply scroll-height relative min-w-full flex-col bg-light-900 dark:bg-dark-900;
+    width: var(--details-width);
+}
+
+.sidebar-col.hide ~ .details-col {
+    --details-width: calc(100vw - calc(var(--icon-bar-width) + var(--list-width)));
+}

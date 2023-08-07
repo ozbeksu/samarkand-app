@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass+Mono&family=Inter:wght@300;400;500;600;700;900&display=swap");
+
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+@import "./_vars.pcss";
+@import "./_utils.pcss";
+@import "./_base.pcss";
+@import "./_layout.pcss";
+@import "./_components.pcss";
