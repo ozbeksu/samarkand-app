@@ -5,13 +5,14 @@
 
 	import CalendarLine from "svelte-remixicon/lib/icons/CalendarLine.svelte";
 
-	export let community: DTO.Community | undefined;
 	export let author: DTO.User | undefined;
+	export let community: DTO.Community | undefined;
 	export let date: Date;
+	export let listInCommunity: boolean | undefined;
 </script>
 
 <div class="flex flex-wrap items-center">
-	{#if community?.id}
+	{#if !listInCommunity && community?.id}
 		{#if community?.avatar}
 			<div class="mx-1">
 				<CommunityAvatar class="p-2 w-10 h-10" imgSrc={community.avatar.url} />

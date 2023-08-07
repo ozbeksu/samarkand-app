@@ -9,7 +9,7 @@
 
 <ListLayout>
 	<svelte:fragment slot="list">
-		<TabNav links={listTabLinks} />
+		<TabNav links={listTabLinks} showBack />
 		<TreadList list={data?.list} />
 	</svelte:fragment>
 

@@ -35,5 +35,5 @@
 		{/if}
 	</article>
 {:else}
-	<article class={`${$$props.class ?? ""} border-b-secondary`}>So empty...</article>
+	<article class={`border-b-secondary ${$$props.class ?? ""}`}>So empty...</article>
 {/if}
