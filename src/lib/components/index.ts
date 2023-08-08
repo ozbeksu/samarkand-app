@@ -7,6 +7,7 @@ import Comment from "$lib/components/Comment/Comment.svelte";
 import CommunityAvatar from "$lib/components/Community/Avatar.svelte";
 import CommunityList from "$lib/components/Community/List/List.svelte";
 import CommunityCard from "$lib/components/Community/Card/Card.svelte";
+import ContactList from "$lib/components/Contact/List.svelte";
 import Empty from "$lib/components/Empty.svelte";
 import Flex from "$lib/components/Container/Flex.svelte";
 import Follows from "$lib/partials/Follows.svelte";
@@ -14,6 +15,8 @@ import FormWrapper from "$lib/components/Form/Wrapper.svelte";
 import Heading from "$lib/components/Typography/Heading.svelte";
 import Input from "$lib/components/Form/Input.svelte";
 import Logo from "$lib/components/Logo.svelte";
+import MessagesList from "$lib/components/Message/List.svelte";
+import MessageCard from "$lib/components/Message/Message.svelte";
 import PageHeader from "$lib/components/Page/Header.svelte";
 import ProfileHeader from "$lib/components/Profile/Header.svelte";
 import TabNav from "$lib/components/Navigation/TabNav.svelte";
@@ -32,6 +35,7 @@ export {
 	CommunityAvatar,
 	CommunityList,
 	CommunityCard,
+	ContactList,
 	Empty,
 	Flex,
 	Follows,
@@ -39,6 +43,8 @@ export {
 	Heading,
 	Input,
 	Logo,
+	MessagesList,
+	MessageCard,
 	PageHeader,
 	ProfileHeader,
 	TabNav,

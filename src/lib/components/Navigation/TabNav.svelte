@@ -26,7 +26,7 @@
 					<a
 						href={link.url}
 						class={`link-tab ${linkMargin}`}
-						class:active={$page.params?.feed === link.url}
+						class:active={$page.url.href.includes(link.url)}
 					>
 						{#if link.icon}
 							<svelte:component this={link.icon} class="mx-2 inline-block h-8 w-8" />

@@ -86,6 +86,6 @@
 	</div>
 
 	<div class="w-full p-4">
-		<Button class="btn-primary w-full" disabled={!agreed} type="submit">Register</Button>
+		<Button class="btn-brand w-full" disabled={!agreed} type="submit">Register</Button>
 	</div>
 </form>

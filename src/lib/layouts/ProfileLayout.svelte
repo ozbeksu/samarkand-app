@@ -1,23 +1,14 @@
 <script lang="ts">
+	import { throttle } from "lodash/function";
+
 	let scrolling = false;
-	let scrollingPause = false;
 
-	function handleScroll(e) {
+	function handleScroll(e: { target: HTMLElement }) {
 		scrolling = e.target.scrollTop > 0;
-	}
-
-	function throttle(callback: () => void, time: number) {
-		if (scrollingPause) return;
-
-		scrollingPause = true;
-		setTimeout(() => {
-			callback();
-			scrollingPause = false;
-		}, time);
 	}
 </script>
 
-<main class="list-col" on:scroll={(e) => throttle(() => handleScroll(e), 100)}>
+<main class="list-col" on:scroll={throttle(handleScroll, 100)}>
 	<slot name="list" {scrolling} />
 </main>
 

@@ -9,7 +9,7 @@
 </script>
 
 <ul class="center w-full flex flex-col list-none mt-2">
-	{#each iconBarLinks as link}
+	{#each iconBarLinks($page.data.authUser?.username) as link}
 		{#if link.protected}
 			{#if $page.data.authUser?.id}
 				<li class="mt-4">

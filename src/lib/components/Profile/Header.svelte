@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { DTO } from "$lib/types";
-	import { Avatar } from "$lib/components";
-	import { FastAverageColor } from "fast-average-color";
 	import { onMount } from "svelte";
+	import { FastAverageColor } from "fast-average-color";
+	import { Avatar } from "$lib/components";
 	import Cover from "$lib/components/Profile/Cover.svelte";
 	import Buttons from "$lib/components/Profile/Buttons.svelte";
 	import Summary from "$lib/components/Profile/Summary.svelte";
 
 	export let user: DTO.User | undefined | null;
 	export let authUser: DTO.User | undefined;
-	export let scrolling: boolean | undefined;
+	export let scrolling: boolean | undefined = false;
 
 	let container: HTMLDivElement;
 	let bgColor = "transparent";
@@ -26,14 +26,16 @@
 	}
 
 	onMount(() => {
-		setBgColor();
+		if (!user?.profile?.cover) {
+			setBgColor();
+		}
 	});
 </script>
 
 <div bind:this={container}>
 	<Cover {bgColor} cover={user?.profile?.cover} {scrolling} />
 
-	<div class="px-8 pt-12" style="margin-top: -8rem">
+	<div class="px-8 pt-12 -mt-32">
 		<Avatar class="profile-image mb-4 w-36" {user} />
 
 		<Buttons
@@ -44,8 +46,8 @@
 
 		<Summary
 			date={user?.created_at}
-			followers={authUser?.followers?.length}
-			following={authUser?.following?.length}
+			followers={user?.followers?.length}
+			following={user?.following?.length}
 			{fullName}
 			{scrolling}
 			username={user?.username}

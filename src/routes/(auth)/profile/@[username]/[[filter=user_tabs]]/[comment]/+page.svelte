@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { ProfilePageData } from "$lib/types";
+	import type { PageData } from "./$types";
 	import { page } from "$app/stores";
 	import ProfileLayout from "$lib/layouts/ProfileLayout.svelte";
 	import { ProfileHeader, TreadList, TreadCard, TabNav } from "$lib/components";
 	import { profileTabLinks } from "$lib/links";
 
-	export let data: ProfilePageData;
+	export let data: PageData;
 </script>
 
 <ProfileLayout>

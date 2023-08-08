@@ -51,7 +51,15 @@ interface ProfileLayoutData extends MasterLayoutData {
 	current?: DTO.Comment | null;
 }
 
-type ProfilePageData = ProfileLayoutData
+type ProfilePageData = ProfileLayoutData;
+
+interface MessagesLayoutData extends ProfileLayoutData {
+	list?: DTO.Message[] | null;
+}
+
+interface MessagesPageData extends MessagesLayoutData {
+	current?: DTO.Message | null;
+}
 
 export namespace UI {
 	export type Link = {
@@ -99,10 +107,22 @@ export namespace DTO {
 		comments?: Comment[];
 		followers?: User[];
 		following?: User[];
-		votes?: User[];
-		bookmarks?: User[];
+		bookmarks?: Bookmark[];
+		messages?: Message[];
+		votes?: Vote[];
 		token: string;
 		created_at: Date;
+	};
+
+	export type Message = {
+		id: number;
+		sender_id: number;
+		sender: User;
+		receiver_id: number;
+		receiver: User;
+		subject?: string;
+		body: string;
+		sent_at: Date;
 	};
 
 	export type Tag = {
@@ -165,16 +185,18 @@ export namespace DTO {
 	export type Bookmark = {
 		id: number;
 		saved: boolean;
-		comment_id: number;
 		user_id: number;
+		comment_id: number;
+		comment: Comment;
 	};
 
 	export type Vote = {
 		id: number;
 		up_vote: boolean;
 		down_vote: boolean;
-		comment_id: number;
 		user_id: number;
+		comment_id: number;
+		comment: Comment;
 	};
 
 	export type Content = {

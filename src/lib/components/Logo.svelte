@@ -1,7 +1,7 @@
 <div class="mb-4">
 	<a class="text-3xl font-semibold" href="/">
 		<span class="flex items-center">
-			<img alt="Samarkand" class="w-12 mr-2 logo" src="/assets/logo.svg" />
+			<img alt="Samarkand" class="w-12 mr-2" src="/assets/logo.svg" />
 			Samarkand
 		</span>
 	</a>

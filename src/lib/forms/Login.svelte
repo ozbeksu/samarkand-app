@@ -70,6 +70,6 @@
 	</div>
 
 	<div class="w-full p-4">
-		<Button class="btn-primary gradient-to-r-brand w-full" type="submit">Login</Button>
+		<Button class="btn-brand gradient-to-r-brand w-full" type="submit">Login</Button>
 	</div>
 </form>

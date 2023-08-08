@@ -64,7 +64,7 @@
 
 	<div class="mt-4 flex flex-row">
 		<div class="w-full p-4">
-			<Button class="btn-primary w-full" type="submit">Save</Button>
+			<Button class="btn-brand w-full" type="submit">Save</Button>
 		</div>
 	</div>
 </form>

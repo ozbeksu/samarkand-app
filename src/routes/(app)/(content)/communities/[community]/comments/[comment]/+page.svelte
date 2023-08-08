@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { CommunityPageData } from "$lib/types";
+	import type { PageData } from "./$types";
 	import ListLayout from "$lib/layouts/ListLayout.svelte";
 	import { CommunityCard, TreadCard, TreadList } from "$lib/components";
 
-	export let data: CommunityPageData;
+	export let data: PageData;
 </script>
 
 <ListLayout>

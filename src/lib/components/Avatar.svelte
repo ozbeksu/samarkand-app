@@ -17,6 +17,6 @@
 			$$props.class ?? ""
 		}`}
 	>
-		${user?.profile.first_name.charAt(0)}${user?.profile.last_name.charAt(0)}
+		${user?.profile?.first_name.charAt(0)}${user?.profile?.last_name.charAt(0)}
 	</Flex>
 {/if}

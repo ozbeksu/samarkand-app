@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { ListLayoutData } from "$lib/types";
+	import type { PageData } from "./$types";
 	import ListLayout from "$lib/layouts/ListLayout.svelte";
 	import { TreadList, TreadCard, TabNav } from "$lib/components";
 	import { listTabLinks } from "$lib/links";
 
-	export let data: ListLayoutData;
+	export let data: PageData;
 </script>
 
 <ListLayout>
 	<svelte:fragment slot="list">
 		<TabNav links={listTabLinks} />
-		<TreadList list={data?.list} />
+		<TreadList list={data?.list} route="/comments" />
 	</svelte:fragment>
-	
+
 	<TreadCard
 		class="px-8 pt-12"
 		showComments

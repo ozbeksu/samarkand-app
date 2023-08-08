@@ -8,11 +8,18 @@ import BubbleChartLine from "svelte-remixicon/lib/icons/BubbleChartLine.svelte";
 import MailOpenLine from "svelte-remixicon/lib/icons/MailOpenLine.svelte";
 import Notification4Line from "svelte-remixicon/lib/icons/Notification4Line.svelte";
 import SearchLine from "svelte-remixicon/lib/icons/SearchLine.svelte";
+import UserSharedLine from "svelte-remixicon/lib/icons/UserSharedLine.svelte";
+import UserReceivedLine from "svelte-remixicon/lib/icons/UserReceivedLine.svelte";
 
 export const listTabLinks: UI.Link[] = [
 	{ name: "New", url: "?feed=new", icon: SparklingLine },
 	{ name: "Hot", url: "?feed=hot", icon: FireLine },
 	{ name: "Best", url: "?feed=best", icon: RocketLine }
+];
+
+export const connectionTabLinks: UI.Link[] = [
+	{ name: "Following", url: "?tab=following", icon: UserSharedLine },
+	{ name: "Followers", url: "?tab=followers", icon: UserReceivedLine }
 ];
 
 export const profileTabLinks = (username: string | undefined): UI.Link[] => {
@@ -28,11 +35,19 @@ export const profileTabLinks = (username: string | undefined): UI.Link[] => {
 	];
 };
 
-export const iconBarLinks: UI.Link[] = [
-	{ url: "/", icon: Home4Line, protected: false },
-	{ url: "/search", icon: SearchLine, protected: false },
-	{ url: "/communities", icon: BubbleChartLine, protected: true },
-	{ url: "/connections", icon: ContactsLine, protected: true },
-	{ url: "/messages", icon: MailOpenLine, protected: true },
-	{ url: "/notifications", icon: Notification4Line, protected: true }
-];
+export const iconBarLinks = (username: string | undefined): UI.Link[] => {
+	const menu = [
+		{ url: "/", icon: Home4Line, protected: false },
+		{ url: "/search", icon: SearchLine, protected: false },
+		{ url: "/communities", icon: BubbleChartLine, protected: false }
+	];
+
+	if (!username) return menu;
+
+	return [
+		...menu,
+		{ url: `/profile/@${username}/connections`, icon: ContactsLine, protected: true },
+		{ url: `/profile/@${username}/messages`, icon: MailOpenLine, protected: true },
+		{ url: `/profile/@${username}/notifications`, icon: Notification4Line, protected: true }
+	];
+};

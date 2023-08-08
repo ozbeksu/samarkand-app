@@ -2,17 +2,11 @@ import type { LayoutServerLoad } from "./$types";
 import type { DTO, API, ProfileLayoutData } from "$lib/types";
 import { get } from "$lib/api";
 
-export const load = (async ({ locals, params, fetch }): Promise<ProfileLayoutData> => {
-	const layoutData: ProfileLayoutData = {} as ProfileLayoutData;
+export const load = (async ({ params, fetch }): Promise<ProfileLayoutData> => {
+	const { data, error } = await get<API.Response<DTO.User>>(
+		fetch,
+		`v1/users/${params.username}/profile`
+	);
 
-	if (locals?.authUser?.username === params.username) {
-		layoutData.user = locals.authUser;
-	} else {
-		const { data, error } = await get<API.Response<DTO.User>>(fetch, `users/${params.username}`);
-
-		layoutData.user = data;
-		layoutData.error = error;
-	}
-
-	return layoutData;
+	return { user: data, error } as ProfileLayoutData;
 }) satisfies LayoutServerLoad;

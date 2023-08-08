@@ -13,7 +13,7 @@
 {#if sameUser}
 	<Button
 		size="sm"
-		class={`profile-edit btn-bordered text-default float-right ${scrolling ? "shrink" : ""}`}
+		class={`profile-edit btn-outline text-default float-right ${scrolling ? "shrink" : ""}`}
 	>
 		<Edit2Line class="inline-block" />
 		Edit Profile
@@ -21,7 +21,7 @@
 {:else if isFollowing}
 	<Button
 		size="sm"
-		class={`profile-edit btn-bordered text-default float-right ${scrolling ? "shrink" : ""}`}
+		class={`profile-edit btn-outline text-default float-right ${scrolling ? "shrink" : ""}`}
 	>
 		<UserUnfollowLine class="inline-block" />
 		Unfollow
@@ -29,7 +29,7 @@
 {:else}
 	<Button
 		size="sm"
-		class={`profile-edit btn-bordered text-default float-right ${scrolling ? "shrink" : ""}`}
+		class={`profile-edit btn-outline text-default float-right ${scrolling ? "shrink" : ""}`}
 	>
 		<UserFollowLine class="inline-block" />
 		Follow
