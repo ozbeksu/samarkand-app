@@ -1,3 +1,5 @@
 export function match(value: string) {
-	return ['treads', 'comments', 'saved', 'upvoted', 'downvoted'].includes(value);
+	return ["posts", "treads", "comments", "media", "bookmarked", "up-voted", "down-voted"].includes(
+		value
+	);
 }

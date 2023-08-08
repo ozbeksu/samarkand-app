@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { DTO } from "$lib/types";
-	import Flex from "$lib/components/Container/Flex.svelte";
+	import { Flex } from "$lib/components";
 
-	export let user: DTO.User | undefined;
+	export let user: DTO.User | null | undefined;
 </script>
 
 {#if user?.profile?.avatar?.url}

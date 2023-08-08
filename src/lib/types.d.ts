@@ -36,11 +36,22 @@ interface CommentPageData extends MasterLayoutData {
 
 interface CommunityListLayoutData extends MasterLayoutData {
 	list: DTO.Community[] | null;
+	current?: DTO.Community | null;
 }
 
 interface CommunityPageData extends CommunityListLayoutData {
-	current?: DTO.Community | null;
+	community: DTO.Community | null;
+	list?: DTO.Comment[] | null;
+	current?: DTO.Comment | null;
 }
+
+interface ProfileLayoutData extends MasterLayoutData {
+	user?: DTO.User | null;
+	list?: DTO.Comment[] | null;
+	current?: DTO.Comment | null;
+}
+
+type ProfilePageData = ProfileLayoutData
 
 export namespace UI {
 	export type Link = {
@@ -86,6 +97,10 @@ export namespace DTO {
 		email: string;
 		profile: Profile;
 		comments?: Comment[];
+		followers?: User[];
+		following?: User[];
+		votes?: User[];
+		bookmarks?: User[];
 		token: string;
 		created_at: Date;
 	};

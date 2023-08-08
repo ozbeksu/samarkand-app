@@ -1,15 +1,12 @@
 <script lang="ts">
-	import type { CommunityPageData } from "$lib/types";
+	import type { CommunityListLayoutData } from "$lib/types";
 	import ListLayout from "$lib/layouts/ListLayout.svelte";
-	import { CommunityCard, CommunityList } from "$lib/components";
+	import { CommunityList, CommunityCard } from "$lib/components";
 
-	export let data: CommunityPageData;
+	export let data: CommunityListLayoutData;
 </script>
 
 <ListLayout>
-	<svelte:fragment slot="list">
-		<CommunityList list={data.list} />
-	</svelte:fragment>
-	
-	<CommunityCard community={data?.current} slot="details" />
+	<CommunityList list={data.list} slot="list" />
+	<CommunityCard community={data?.current} showComments slot="details" />
 </ListLayout>

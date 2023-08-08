@@ -34,9 +34,12 @@
     @apply bg-gradient-to-b from-35% from-brand-500 dark:from-brand-800 to-sky-500 dark:to-sky-800
 }
 
-
 .gradient-to-r-brand {
     @apply bg-gradient-to-r from-35% from-brand-500 dark:from-brand-800 to-sky-500 dark:to-sky-800
+}
+
+.gradient-to-t-secondary {
+    @apply bg-gradient-to-t from-20% from-light-800 dark:from-dark-800
 }
 
 .post-image-shade {
@@ -81,4 +84,8 @@
     &:hover {
         box-shadow: theme("spacing.2") theme("spacing.2") 0 0 theme("colors.brand.500");
     }
+}
+
+.bg-default {
+    @apply backdrop-blur-sm;
 }

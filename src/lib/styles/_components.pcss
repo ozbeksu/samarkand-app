@@ -82,6 +82,10 @@ label {
         }
     }
 
+    &.btn-bordered {
+        @apply border border-black hover:bg-light-800 dark:border-white  hover:dark:bg-dark-800;
+    }
+
     &.btn-transparent {
         @apply text-secondary bg-transparent hover:bg-light-800 dark:bg-transparent dark:hover:bg-dark-800;
     }
@@ -99,3 +103,7 @@ label {
     }
 }
 
+.logo {
+    @apply rounded-full border border-brand-50 border-opacity-10;
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
+}

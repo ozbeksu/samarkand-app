@@ -30,7 +30,7 @@
 		{/if}
 	{:else if author?.id}
 		<div class="mx-1">
-			<Avatar class="w-12 h-12" href={`/profile/@${author.username}`} user={author} />
+			<Avatar class="w-10 h-10" href={`/profile/@${author.username}`} user={author} />
 		</div>
 	{/if}
 	{#if author?.id}

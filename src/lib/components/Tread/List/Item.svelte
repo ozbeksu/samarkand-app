@@ -7,12 +7,16 @@
 	import Footer from "$lib/components/Tread/Footer.svelte";
 
 	export let tread: DTO.Comment | undefined;
+	export let route: string | null | undefined;
 
 	let inCommunityPage = $page?.route?.id?.includes("communities");
 </script>
 
 {#if tread?.id}
-	<article class={`flex flex-col hover:bg-light-900 dark:hover:bg-dark-900 ${$$props.class ?? ""}`}>
+	<article
+		class={`flex flex-col hover:bg-light-900 dark:hover:bg-dark-900 ${$$props.class ?? ""}`}
+		class:active={$page.url.pathname.split("/").filter(Boolean).includes(tread?.slug)}
+	>
 		<div class="w-full">
 			<Header
 				author={tread?.author}
@@ -22,9 +26,8 @@
 			/>
 			<Content
 				attachments={tread?.attachments}
-				community={tread?.community?.slug}
 				content={tread?.content}
-				listInCommunity={inCommunityPage}
+				{route}
 				slug={tread.slug}
 				title={tread.title}
 			/>

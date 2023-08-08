@@ -12,7 +12,7 @@
 
 <Heading class="text-xl font-bold p-0 mt-3" tag="h4">
 	{#if route}
-		<a class="text-default" href={`/${route}/${slug}`}>{title}</a>
+		<a class="text-default" href={`${route}/${slug}`}>{title}</a>
 	{:else}
 		<a class="text-default" href={`/comments/${slug}`}>{title}</a>
 	{/if}

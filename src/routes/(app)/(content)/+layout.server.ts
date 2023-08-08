@@ -2,17 +2,17 @@ import type { LayoutServerLoad } from "./$types";
 import type { API, DTO, ListLayoutData } from "$lib/types";
 import { get, toRecord } from "$lib/api";
 
-export const load = (async ({ fetch, params }): Promise<ListLayoutData> => {
+export const load = (async ({ fetch, url }): Promise<ListLayoutData> => {
 	const { data, error } = await get<API.Response<DTO.Comment[]>>(
 		fetch,
 		"v1/comments",
-		toFeedParams(params.filter)
+		toFeedParams(url.searchParams.get("feed"))
 	);
 
 	return { list: data ?? [], error } as ListLayoutData;
 }) satisfies LayoutServerLoad;
 
-function toFeedParams(filter?: string): Record<string, string> {
+function toFeedParams(filter?: string | null): Record<string, string> {
 	const opts: Record<string, string | number | null> = { parent: "null", limit: 10 };
 	if (!filter) return toRecord(opts) as Record<string, string>;
 

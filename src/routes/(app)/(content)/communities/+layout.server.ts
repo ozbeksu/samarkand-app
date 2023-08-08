@@ -5,5 +5,9 @@ import { get } from "$lib/api";
 export const load = (async ({ fetch }): Promise<CommunityListLayoutData> => {
 	const { data, error } = await get<API.Response<DTO.Community[]>>(fetch, "v1/communities");
 
-	return { list: data ?? [], error } as CommunityListLayoutData;
+	return {
+		list: data ?? [],
+		current: data?.length ? data[0] : null,
+		error
+	} as CommunityListLayoutData;
 }) satisfies LayoutServerLoad;

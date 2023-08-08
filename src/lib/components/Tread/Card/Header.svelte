@@ -12,7 +12,7 @@
 <div class="flex flex-wrap items-center">
 	{#if author?.id}
 		<div class="mx-1">
-			<Avatar class="w-12 h-12" href={`/profile/@${author.username}`} user={author} />
+			<Avatar class="w-10 h-10" href={`/profile/@${author.username}`} user={author} />
 		</div>
 		<div class="mx-1">
 			<a class="text-default" href={`/profile/@${author.username}`}>

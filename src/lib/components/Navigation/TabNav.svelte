@@ -9,17 +9,18 @@
 	export let showBack = false;
 </script>
 
+{#if showBack}
+	<div class={`inner-header center flex pb-6 pt-10  ${$$props.class ?? ""}`}>
+		<button class={`link-tab link-primary ${linkMargin}`} on:click={() => history.back()}>
+			<ArrowGoBackLine class="mx-2 inline-block h-8 w-8" />
+			Back
+		</button>
+	</div>
+{/if}
+
 {#if links?.length}
 	<div class={`inner-header center flex pb-6 pt-10  ${$$props.class ?? ""}`}>
 		<ul class="justify-center list-none">
-			{#if showBack}
-				<li class="inline-flex">
-					<button class={`link-tab ${linkMargin}`} on:click={() => history.back()}>
-						<ArrowGoBackLine class="mx-2 inline-block h-8 w-8" />
-						Back
-					</button>
-				</li>
-			{/if}
 			{#each links as link}
 				<li class="inline-flex">
 					<a

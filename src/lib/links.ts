@@ -11,19 +11,22 @@ import SearchLine from "svelte-remixicon/lib/icons/SearchLine.svelte";
 
 export const listTabLinks: UI.Link[] = [
 	{ name: "New", url: "?feed=new", icon: SparklingLine },
-	{ name: "Best", url: "?feed=best", icon: RocketLine },
-	{ name: "Hot", url: "?feed=hot", icon: FireLine }
+	{ name: "Hot", url: "?feed=hot", icon: FireLine },
+	{ name: "Best", url: "?feed=best", icon: RocketLine }
 ];
 
-export const profileTabLinks = (username: string): UI.Link[] => [
-	{ name: "Posts", url: `/profile/@${username}/posts` },
-	{ name: "Treads", url: `/profile/@${username}/treads` },
-	{ name: "Comments", url: `/profile/@${username}/comments` },
-	{ name: "Media", url: `/profile/@${username}/media` },
-	{ name: "Saved", url: `/profile/@${username}/saved` },
-	{ name: "Up Voted", url: `/profile/@${username}/upvoted` },
-	{ name: "Down Voted", url: `/profile/@${username}/downvoted` }
-];
+export const profileTabLinks = (username: string | undefined): UI.Link[] => {
+	if (!username) return [];
+	return [
+		{ name: "Posts", url: `/profile/@${username}/posts` },
+		{ name: "Treads", url: `/profile/@${username}/treads` },
+		{ name: "Comments", url: `/profile/@${username}/comments` },
+		// { name: "Media", url: `/profile/@${username}/media` },
+		{ name: "Saved", url: `/profile/@${username}/bookmarked` },
+		{ name: "Up Voted", url: `/profile/@${username}/up-voted` },
+		{ name: "Down Voted", url: `/profile/@${username}/down-voted` }
+	];
+};
 
 export const iconBarLinks: UI.Link[] = [
 	{ url: "/", icon: Home4Line, protected: false },

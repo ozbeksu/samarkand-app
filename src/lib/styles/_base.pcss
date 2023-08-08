@@ -4,7 +4,7 @@ body {
 
 .inner-header {
     width: var(--list-width);
-    @apply backdrop sticky top-0 z-40 border-b border-black dark:border-white border-opacity-10;
+    @apply backdrop sticky top-0 z-40 border-b border-black dark:border-white border-opacity-10 dark:border-opacity-10;
 }
 
 .sidebar-col,
@@ -57,6 +57,10 @@ body {
     article {
         @apply border-b border-brand;
 
+        &.active {
+            @apply bg-light-900 dark:bg-dark-900;
+        }
+
         &:hover {
             img.post-image {
                 box-shadow: 0.5rem 0.5rem 0 0 theme('colors.brand.500');
@@ -102,5 +106,35 @@ img {
                 @apply bg-white;
             }
         }
+    }
+}
+
+.profile-cover {
+    height: 16rem;
+    transition: height 260ms ease-out;
+
+    &.shrink {
+        height: 8rem;
+        transition: height 260ms ease-in;
+    }
+}
+
+.profile-edit {
+    margin-top: -3.7rem;
+    transition: margin-top 260ms ease-in;
+
+    &.shrink {
+        margin-top: -10rem;
+        transition: margin-top 260ms ease-in;
+    }
+}
+
+.profile-info {
+    height: 8rem;
+    transition: height 260ms ease-out;
+
+    &.shrink {
+        height: 0;
+        transition: height 260ms ease-in;
     }
 }

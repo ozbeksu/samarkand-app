@@ -7,9 +7,7 @@
 </script>
 
 <ListLayout>
-	<svelte:fragment slot="list">
-		<CommunityList list={data.list} />
-	</svelte:fragment>
+	<CommunityList list={data.list} slot="list" />
 
 	<CommunityCard community={data?.list?.length ? data?.list[0] : null} slot="details" />
 </ListLayout>

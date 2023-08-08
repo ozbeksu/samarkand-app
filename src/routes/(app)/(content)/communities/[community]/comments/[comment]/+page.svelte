@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type { CommentPageData } from "$lib/types";
+	import type { CommunityPageData } from "$lib/types";
 	import ListLayout from "$lib/layouts/ListLayout.svelte";
-	import { TreadList, TreadCard, TabNav } from "$lib/components";
-	import { listTabLinks } from "$lib/links";
+	import { CommunityCard, TreadCard, TreadList } from "$lib/components";
 
-	export let data: CommentPageData;
+	export let data: CommunityPageData;
 </script>
 
 <ListLayout>
 	<svelte:fragment slot="list">
-		<TabNav links={listTabLinks} showBack />
-		<TreadList list={data?.list} />
+		<CommunityCard community={data?.community} slot="details" />
+		<TreadList list={data?.list} route={`/communities/${data?.community?.slug}/comments`} />
 	</svelte:fragment>
-
-	<TreadCard class="px-8 pt-12" showComments slot="details" tread={data.current} />
+	<TreadCard class="px-8 pt-12" showComments slot="details" tread={data?.current} />
 </ListLayout>
