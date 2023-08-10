@@ -4,7 +4,7 @@
 	import { Avatar, CommunityAvatar, Flex } from "$lib/components";
 	import { dateFormat, dateSince } from "$lib/utils/date";
 
-	import MessageLine from "svelte-remixicon/lib/icons/MessageLine.svelte";
+	import MailUnreadLine from "svelte-remixicon/lib/icons/MailUnreadLine.svelte";
 	import MailOpenLine from "svelte-remixicon/lib/icons/MailOpenLine.svelte";
 	import TimeLine from "svelte-remixicon/lib/icons/TimeLine.svelte";
 	import CalendarLine from "svelte-remixicon/lib/icons/CalendarLine.svelte";
@@ -21,8 +21,8 @@
 
 {#if message}
 	<Flex class="border-b border-brand">
-		<Flex class="py-4 px-8 items-center" direction="row">
-			{#if message.sender.sender_type === "user"}
+		<Flex class="p-8 items-center" direction="row">
+			{#if message.sender.type === "user"}
 				<Avatar class="w-16 h-16" user={message.sender.user} />
 				<Flex class="px-4 mr-auto" direction="col">
 					<p class="font-semibold">
@@ -32,7 +32,7 @@
 					<p>@{message.sender.user?.username}</p>
 				</Flex>
 			{/if}
-			{#if message.sender.sender_type === "community"}
+			{#if message.sender.type === "community"}
 				<CommunityAvatar class="w-16 h-16" imgSrc={message.sender?.community?.avatar?.url} />
 				<Flex class="px-4 mr-auto" direction="col">
 					{#if tab}
@@ -68,18 +68,18 @@
 				</a>
 			{/if}
 		</Flex>
-		<Flex class="py-4 px-8 items-center border-t" direction="row">
-			<div class="mx-4 flex items-center mr-auto">
-				<MessageLine class="w-4 h-4 inline-flex mr-2" />
-				<p class="font-semibold">{message.subject}</p>
+		<Flex class="py-4 px-8 items-center border-t border-brand" direction="row">
+			<div class="ml-2 flex items-center mr-auto">
+				<MailUnreadLine class="w-4 h-4 inline-flex mr-2" />
+				<p class="font-semibold truncate">{message.subject}</p>
 			</div>
-			<div class="mx-4 flex items-center text-sm">
+			<div class="mr-4 flex items-center text-sm">
 				<TimeLine class="w-4 h-4 inline-flex mr-2" />
-				<p>{dateSince(message.sent_at)}</p>
+				<p>{dateSince(message.sender.sent_at)}</p>
 			</div>
-			<div class="mx-4 flex items-center text-sm">
+			<div class="flex items-center text-sm">
 				<CalendarLine class="w-4 h-4 inline-flex mr-2" />
-				<p>{dateFormat(message.sent_at)}</p>
+				<p>{dateFormat(message.sender.sent_at)}</p>
 			</div>
 		</Flex>
 	</Flex>

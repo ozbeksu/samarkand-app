@@ -13,7 +13,7 @@
 
 {#if message}
 	<Flex class={`p-8 border-b border-brand items-center ${$$props.class ?? ""}`} direction="row">
-		{#if message.sender.sender_type === "user"}
+		{#if message.sender.type === "user"}
 			<Avatar class="w-16 h-16" user={message.sender.user} />
 			<Flex class="px-4 mr-auto" direction="col">
 				<p class="font-semibold">
@@ -27,7 +27,7 @@
 				</p>
 			</Flex>
 		{/if}
-		{#if message.sender.sender_type === "community"}
+		{#if message.sender.type === "community"}
 			<CommunityAvatar class="w-16 h-16" imgSrc={message.sender?.community?.avatar?.url} />
 			<Flex class="px-4 mr-auto" direction="col">
 				<p class="font-semibold text-lg">
@@ -37,11 +37,11 @@
 		{/if}
 		<div class="mx-4 flex items-center">
 			<TimeLine class="w-4 h-4 inline-flex mr-2" />
-			<p>{dateSince(message.sent_at)}</p>
+			<p>{dateSince(message.sender.sent_at)}</p>
 		</div>
 		<div class="mx-4 flex items-center">
 			<CalendarLine class="w-4 h-4 inline-flex mr-2" />
-			<p>{dateFormat(message.sent_at)}</p>
+			<p>{dateFormat(message.sender.sent_at)}</p>
 		</div>
 		<Button class="btn-blue mr-4 flex items-center" size="sm">
 			<MailCheckLine class="w-4 h-4 inline-flex mr-2" />

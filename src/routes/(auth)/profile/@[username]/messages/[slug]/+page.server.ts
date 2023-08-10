@@ -7,10 +7,8 @@ export const load = (async ({ params, url, parent }): Promise<MessagesPageData> 
 	if (!tab) throw redirect(307, `/profile/@${params.username}/messages?tab=user`);
 
 	const { list } = await parent();
-	const current = list?.find((m) => m.slug === params.slug);
+	const messages = list?.filter((m) => m.sender.type === tab);
+	const current = messages?.find((m) => m.slug === params.slug);
 
-	return {
-		list: list?.filter((m) => m.sender.sender_type === tab),
-		current
-	} as MessagesPageData;
+	return { list: messages, current } as MessagesPageData;
 }) satisfies PageServerLoad;

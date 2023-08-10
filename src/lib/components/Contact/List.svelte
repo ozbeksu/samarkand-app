@@ -2,13 +2,11 @@
 	import type { DTO } from "$lib/types";
 	import Item from "$lib/components/Contact/Item.svelte";
 
-	export let list: DTO.User[] | undefined;
+	export let list: DTO.User[] | null | undefined;
 </script>
 
 {#if list?.length}
-	<div>
-		{#each list as user}
-			<Item {user} />
-		{/each}
-	</div>
+	{#each list as user}
+		<Item {user} />
+	{/each}
 {/if}

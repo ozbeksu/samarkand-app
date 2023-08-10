@@ -71,6 +71,15 @@ interface ProfileLayoutData extends MasterLayoutData {
 
 type ProfilePageData = ProfileLayoutData;
 
+interface ConnectionsLayoutData extends ProfileLayoutData {
+	list?: DTO.User[] | null;
+}
+
+interface ConnectionsPageData extends ConnectionsLayoutData {
+	current?: DTO.User | null;
+	messages?: DTO.Message[] | null;
+}
+
 interface MessagesLayoutData extends ProfileLayoutData {
 	list?: DTO.Message[] | null;
 }
@@ -105,6 +114,10 @@ export namespace API {
 		data: T | null;
 		error?: string;
 	};
+	export type ChatResponse = {
+		data: { sent: DTO.Message[]; received: DTO.Message[] };
+		error?: string;
+	};
 }
 
 export namespace DTO {
@@ -130,13 +143,12 @@ export namespace DTO {
 		slug: string;
 		subject?: string;
 		content: string;
-		sent_at: Date;
 		sender: MessageSender;
 	};
 
 	export type MessageSender = {
 		id: number;
-		sender_type: MessageSenderType;
+		type: MessageSenderType;
 		message_id: number;
 		message: Message;
 		user_id?: number;
@@ -145,6 +157,7 @@ export namespace DTO {
 		group?: Group;
 		community_id?: number;
 		community?: Community;
+		sent_at: Date;
 	};
 
 	export type MessageRecipient = {
@@ -160,6 +173,7 @@ export namespace DTO {
 		group?: Group;
 		community_id?: number;
 		community?: Community;
+		read_at: Date;
 	};
 
 	export type Profile = {

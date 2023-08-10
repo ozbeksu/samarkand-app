@@ -10,7 +10,7 @@ export const load = (async ({ url, params, parent }): Promise<ConnectionsPageDat
 
 	const { user } = await parent();
 	const list = tab === "following" ? user?.following : user?.followers;
-	const current = list?.length ? list[0] : null;
+	const current = list?.find((u) => u.username === params.connection);
 
 	const { data, error } = await get<API.ChatResponse>(
 		fetch,

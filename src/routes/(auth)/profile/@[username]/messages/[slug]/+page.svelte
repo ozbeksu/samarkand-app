@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
 	import ProfileLayout from "$lib/layouts/ProfileLayout.svelte";
-	import { MessagesList, MessageCard, ProfileHeader, TabNav } from "$lib/components";
+	import { MessageList, MessageCard, ProfileHeader, TabNav } from "$lib/components";
 	import { page } from "$app/stores";
 	import { messagesTabLinks } from "$lib/links";
 
@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="list-wrapper">
-			<MessagesList list={data?.list} />
+			<MessageList list={data?.list} />
 		</div>
 	</svelte:fragment>
 

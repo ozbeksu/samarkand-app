@@ -55,7 +55,8 @@ export const iconBarLinks = (username: string | undefined): UI.Link[] => {
 
 	return [
 		...menu,
-		{ url: `/profile/@${username}/connections`, icon: ContactsLine, protected: true },
+		// { url: `/profile/@${username}/groups`, icon: TeamLine, protected: true },
+		{ url: `/profile/@${username}/connections`, icon: GroupLine, protected: true },
 		{ url: `/profile/@${username}/messages`, icon: MailOpenLine, protected: true },
 		{ url: `/profile/@${username}/notifications`, icon: Notification4Line, protected: true }
 	];

@@ -26,6 +26,7 @@
     "@tiptap/extension-superscript": "^2.0.4",
     "@tiptap/pm": "^2.0.4",
     "@tiptap/starter-kit": "^2.0.4",
+    "@types/lodash": "^4.14.197",
     "@types/node": "^20.4.6",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
