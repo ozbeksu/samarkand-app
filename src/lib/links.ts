@@ -11,15 +11,24 @@ import SearchLine from "svelte-remixicon/lib/icons/SearchLine.svelte";
 import UserSharedLine from "svelte-remixicon/lib/icons/UserSharedLine.svelte";
 import UserReceivedLine from "svelte-remixicon/lib/icons/UserReceivedLine.svelte";
 
+import GroupLine from "svelte-remixicon/lib/icons/GroupLine.svelte";
+import TeamLine from "svelte-remixicon/lib/icons/TeamLine.svelte";
+
 export const listTabLinks: UI.Link[] = [
 	{ name: "New", url: "?feed=new", icon: SparklingLine },
 	{ name: "Hot", url: "?feed=hot", icon: FireLine },
 	{ name: "Best", url: "?feed=best", icon: RocketLine }
 ];
 
-export const connectionTabLinks: UI.Link[] = [
+export const connectionsTabLinks: UI.Link[] = [
 	{ name: "Following", url: "?tab=following", icon: UserSharedLine },
 	{ name: "Followers", url: "?tab=followers", icon: UserReceivedLine }
+];
+
+export const messagesTabLinks: UI.Link[] = [
+	{ name: "Connections", url: "?tab=user", icon: GroupLine },
+	{ name: "Groups", url: "?tab=group", icon: TeamLine },
+	{ name: "Communities", url: "?tab=community", icon: BubbleChartLine }
 ];
 
 export const profileTabLinks = (username: string | undefined): UI.Link[] => {
@@ -28,7 +37,7 @@ export const profileTabLinks = (username: string | undefined): UI.Link[] => {
 		{ name: "Posts", url: `/profile/@${username}/posts` },
 		{ name: "Treads", url: `/profile/@${username}/treads` },
 		{ name: "Comments", url: `/profile/@${username}/comments` },
-		// { name: "Media", url: `/profile/@${username}/media` },
+		{ name: "Media", url: `/profile/@${username}/media` },
 		{ name: "Saved", url: `/profile/@${username}/bookmarked` },
 		{ name: "Up Voted", url: `/profile/@${username}/up-voted` },
 		{ name: "Down Voted", url: `/profile/@${username}/down-voted` }

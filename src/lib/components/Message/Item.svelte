@@ -1,33 +1,86 @@
 <script lang="ts">
 	import type { DTO } from "$lib/types";
 	import { page } from "$app/stores";
-	import { Avatar, Flex } from "$lib/components";
+	import { Avatar, CommunityAvatar, Flex } from "$lib/components";
+	import { dateFormat, dateSince } from "$lib/utils/date";
 
-	import MailCheckLine from "svelte-remixicon/lib/icons/MailCheckLine.svelte";
+	import MessageLine from "svelte-remixicon/lib/icons/MessageLine.svelte";
+	import MailOpenLine from "svelte-remixicon/lib/icons/MailOpenLine.svelte";
+	import TimeLine from "svelte-remixicon/lib/icons/TimeLine.svelte";
+	import CalendarLine from "svelte-remixicon/lib/icons/CalendarLine.svelte";
+	import { beforeUpdate } from "svelte";
 
 	export let message: DTO.Message | undefined;
+
+	let tab: string | null | undefined;
+
+	beforeUpdate(() => {
+		tab = $page.url.searchParams.get("tab");
+	});
 </script>
 
 {#if message}
-	<Flex class="p-8 border-b border-brand">
-		<Flex class="items-center" direction="row">
-			<Avatar class="w-16 h-16" user={message.sender} />
-			<Flex class="px-4 mr-auto" direction="col">
-				<p class="font-semibold">
-					{message.sender?.profile.first_name}
-					{message.sender?.profile.last_name}
-				</p>
-				<p>@{message.sender?.username}</p>
-			</Flex>
+	<Flex class="border-b border-brand">
+		<Flex class="py-4 px-8 items-center" direction="row">
+			{#if message.sender.sender_type === "user"}
+				<Avatar class="w-16 h-16" user={message.sender.user} />
+				<Flex class="px-4 mr-auto" direction="col">
+					<p class="font-semibold">
+						{message.sender.user?.profile.first_name}
+						{message.sender.user?.profile.last_name}
+					</p>
+					<p>@{message.sender.user?.username}</p>
+				</Flex>
+			{/if}
+			{#if message.sender.sender_type === "community"}
+				<CommunityAvatar class="w-16 h-16" imgSrc={message.sender?.community?.avatar?.url} />
+				<Flex class="px-4 mr-auto" direction="col">
+					{#if tab}
+						<a
+							class="font-semibold"
+							href={`/communities/${message.sender?.community?.slug}?tab=${tab}`}
+						>
+							{message.sender?.community?.title}
+						</a>
+					{:else}
+						<a class="font-semibold" href={`/communities/${message.sender?.community?.slug}`}>
+							{message.sender?.community?.title}
+						</a>
+					{/if}
+				</Flex>
+			{/if}
 
-			<a
-				class="btn btn-green-outline btn-sm mr-4 flex items-center"
-				href={`/profile/@${$page.params.username}/messages/${message.id}`}
-			>
-				<MailCheckLine class="w-4 h-4 inline-flex mr-2" />
-				Read
-			</a>
+			{#if tab}
+				<a
+					class="btn btn-green-outline btn-sm mr-4 flex items-center"
+					href={`/profile/@${$page.params.username}/messages/${message.slug}?tab=${tab}`}
+				>
+					<MailOpenLine class="w-4 h-4 inline-flex mr-2" />
+					Read
+				</a>
+			{:else}
+				<a
+					class="btn btn-green-outline btn-sm mr-4 flex items-center"
+					href={`/profile/@${$page.params.username}/messages/${message.slug}`}
+				>
+					<MailOpenLine class="w-4 h-4 inline-flex mr-2" />
+					Read
+				</a>
+			{/if}
 		</Flex>
-		<p class="pt-2">Subject: <span class="font-semibold">{message.subject}</span></p>
+		<Flex class="py-4 px-8 items-center border-t" direction="row">
+			<div class="mx-4 flex items-center mr-auto">
+				<MessageLine class="w-4 h-4 inline-flex mr-2" />
+				<p class="font-semibold">{message.subject}</p>
+			</div>
+			<div class="mx-4 flex items-center text-sm">
+				<TimeLine class="w-4 h-4 inline-flex mr-2" />
+				<p>{dateSince(message.sent_at)}</p>
+			</div>
+			<div class="mx-4 flex items-center text-sm">
+				<CalendarLine class="w-4 h-4 inline-flex mr-2" />
+				<p>{dateFormat(message.sent_at)}</p>
+			</div>
+		</Flex>
 	</Flex>
 {/if}

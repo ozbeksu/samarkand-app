@@ -1,18 +1,30 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
 	import ProfileLayout from "$lib/layouts/ProfileLayout.svelte";
-	import { MessagesList, MessageCard, ProfileHeader } from "$lib/components";
+	import { MessagesList, MessageCard, ProfileHeader, TabNav } from "$lib/components";
+	import { page } from "$app/stores";
+	import { messagesTabLinks } from "$lib/links";
 
 	export let data: PageData;
 </script>
 
 <ProfileLayout>
 	<svelte:fragment let:scrolling slot="list">
-		<div class="bg-default sticky top-0 z-40 border-b border-brand pb-8">
+		<div class="bg-profile-cover fixed top-0 z-40">
 			<ProfileHeader authUser={data?.authUser} {scrolling} user={data?.user} />
+
+			<TabNav
+				active={$page.url.search}
+				class={`${scrolling ? "pt-2" : "pt-8"}`}
+				linkMargin="mx-2"
+				links={messagesTabLinks}
+			/>
 		</div>
-		<MessagesList list={data?.list} />
+
+		<div class="list-wrapper">
+			<MessagesList list={data?.list} />
+		</div>
 	</svelte:fragment>
 
-	<MessageCard message={data?.list?.length ? data.list[0] : null} slot="details" />
+	<MessageCard class="px-8 pt-12" message={data?.current} slot="details" />
 </ProfileLayout>

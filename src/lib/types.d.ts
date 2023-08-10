@@ -18,6 +18,24 @@ export enum NotificationType {
 	error = "error"
 }
 
+export enum NotificationStatus {
+	sent = "sent",
+	received = "received",
+	read = "read"
+}
+
+export enum MessageStatus {
+	sent = "sent",
+	read = "read",
+	unread = "unread"
+}
+
+export enum MessageSenderType {
+	user = "user",
+	group = "group",
+	community = "community"
+}
+
 interface MasterLayoutData {
 	users: DTO.User[] | null;
 	tags: DTO.Tag[] | null;
@@ -90,15 +108,6 @@ export namespace API {
 }
 
 export namespace DTO {
-	export type Profile = {
-		id: number;
-		first_name: string;
-		last_name: string;
-		avatar: DTO.Attachment;
-		cover: DTO.Attachment;
-		bio: string;
-	};
-
 	export type User = {
 		id: number;
 		username: string;
@@ -108,7 +117,9 @@ export namespace DTO {
 		followers?: User[];
 		following?: User[];
 		bookmarks?: Bookmark[];
-		messages?: Message[];
+		sent_messages?: MessageSender[];
+		received_messages?: MessageRecipient[];
+		notifications?: Notification[];
 		votes?: Vote[];
 		token: string;
 		created_at: Date;
@@ -116,13 +127,48 @@ export namespace DTO {
 
 	export type Message = {
 		id: number;
-		sender_id: number;
-		sender: User;
-		receiver_id: number;
-		receiver: User;
+		slug: string;
 		subject?: string;
-		body: string;
+		content: string;
 		sent_at: Date;
+		sender: MessageSender;
+	};
+
+	export type MessageSender = {
+		id: number;
+		sender_type: MessageSenderType;
+		message_id: number;
+		message: Message;
+		user_id?: number;
+		user?: User;
+		group_id?: number;
+		group?: Group;
+		community_id?: number;
+		community?: Community;
+	};
+
+	export type MessageRecipient = {
+		id: number;
+		status: MessageStatus;
+		archived: boolean;
+		deleted: boolean;
+		message_id: number;
+		message: Message;
+		user_id?: number;
+		user?: User;
+		group_id?: number;
+		group?: Group;
+		community_id?: number;
+		community?: Community;
+	};
+
+	export type Profile = {
+		id: number;
+		first_name: string;
+		last_name: string;
+		avatar: DTO.Attachment;
+		cover: DTO.Attachment;
+		bio: string;
 	};
 
 	export type Tag = {
@@ -179,7 +225,7 @@ export namespace DTO {
 		width?: number;
 		height?: number;
 		type?: "media" | "file";
-		created_at?: Date;
+		created_at: Date;
 	};
 
 	export type Bookmark = {
@@ -190,6 +236,17 @@ export namespace DTO {
 		comment: Comment;
 	};
 
+	export type Notification = {
+		id: number;
+		slug: string;
+		type: NotificationType;
+		content?: string;
+		user_id: number;
+		user: User;
+		status: NotificationStatus;
+		created_at: Date;
+	};
+
 	export type Vote = {
 		id: number;
 		up_vote: boolean;
@@ -197,6 +254,13 @@ export namespace DTO {
 		user_id: number;
 		comment_id: number;
 		comment: Comment;
+	};
+
+	export type Group = {
+		id: number;
+		name: string;
+		slug: string;
+		created_at: Date;
 	};
 
 	export type Content = {

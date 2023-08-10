@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { afterUpdate } from "svelte";
 	import { page } from "$app/stores";
 	import IconBar from "$lib/partials/IconBar.svelte";
 	import SideBar from "$lib/partials/SideBar.svelte";
@@ -8,7 +8,7 @@
 	let sideBar: HTMLDivElement;
 	let hasScroll = false;
 
-	onMount(() => {
+	afterUpdate(() => {
 		hasScroll = sideBar.scrollHeight > sideBar.clientHeight;
 	});
 </script>

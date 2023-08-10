@@ -4,7 +4,7 @@
 	import { page } from "$app/stores";
 	import ProfileLayout from "$lib/layouts/ProfileLayout.svelte";
 	import { ContactList, ProfileHeader, TabNav } from "$lib/components";
-	import { connectionTabLinks } from "$lib/links";
+	import { connectionsTabLinks } from "$lib/links";
 
 	export let data: PageData;
 
@@ -15,17 +15,19 @@
 
 <ProfileLayout>
 	<svelte:fragment let:scrolling slot="list">
-		<div class="bg-default sticky top-0 z-40">
+		<div class="bg-profile-cover fixed top-0 z-40">
 			<ProfileHeader authUser={data?.authUser} {scrolling} user={data?.user} />
 
 			<TabNav
 				active={$page.url.search}
 				class={`${scrolling ? "pt-2" : "pt-8"}`}
 				linkMargin="mx-2"
-				links={connectionTabLinks}
+				links={connectionsTabLinks}
 			/>
 		</div>
-		<ContactList {list} />
+		<div class="list-wrapper">
+			<ContactList {list} />
+		</div>
 	</svelte:fragment>
 
 	<div class="px-8 pt-12" slot="details">Connections</div>

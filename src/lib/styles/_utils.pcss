@@ -1,7 +1,3 @@
-.backdrop {
-    backdrop-filter: blur(1rem);
-}
-
 .no-decoration {
     @apply hover:no-underline dark:hover:no-underline;
 }
@@ -29,6 +25,11 @@
 .border-secondary {
     @apply border-gray-300 dark:border-gray-700;
 }
+
+.border-opaque {
+    @apply border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+}
+
 
 .gradient-to-b-brand {
     @apply bg-gradient-to-b from-35% from-brand-500 dark:from-brand-800 to-sky-500 dark:to-sky-800
@@ -86,6 +87,20 @@
     }
 }
 
-.bg-default {
-    @apply backdrop-blur-sm;
+
+.bg-profile-cover {
+    @apply backdrop-blur-sm border-b border-r border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    width: calc(var(--list-width) - 0.55rem);
+}
+
+.no-scroll {
+    .bg-profile-cover {
+        @apply border-r-0 backdrop-blur-none;
+        width: var(--list-width);
+    }
+}
+
+.list-wrapper {
+    margin-top: 36rem;
+    margin-bottom: 7.5rem
 }

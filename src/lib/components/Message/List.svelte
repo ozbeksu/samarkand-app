@@ -6,9 +6,7 @@
 </script>
 
 {#if list?.length}
-	<div>
-		{#each list as message}
-			<Item {message} />
-		{/each}
-	</div>
+	{#each list as message}
+		<Item {message} />
+	{/each}
 {/if}

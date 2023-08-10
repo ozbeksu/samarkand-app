@@ -9,7 +9,7 @@
 
 <ListLayout>
 	<svelte:fragment slot="list">
-		<TabNav links={listTabLinks} />
+		<TabNav class="backdrop-blur-sm border-b border-opaque" links={listTabLinks} />
 		<TreadList list={data?.list} route="/comments" />
 	</svelte:fragment>
 

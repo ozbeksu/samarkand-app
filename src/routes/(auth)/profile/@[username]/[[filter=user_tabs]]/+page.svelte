@@ -10,7 +10,7 @@
 
 <ProfileLayout>
 	<svelte:fragment let:scrolling slot="list">
-		<div class="bg-default sticky top-0 z-40">
+		<div class="bg-profile-cover fixed top-0 z-40">
 			<ProfileHeader authUser={data?.authUser} {scrolling} user={data?.user} />
 
 			<TabNav
@@ -20,11 +20,12 @@
 				links={profileTabLinks(data?.user?.username)}
 			/>
 		</div>
-
-		<TreadList
-			list={data?.list}
-			route={`/profile/@${data?.user?.username}/${$page.params.filter}`}
-		/>
+		<div class="list-wrapper">
+			<TreadList
+				list={data?.list}
+				route={`/profile/@${data?.user?.username}/${$page.params.filter}`}
+			/>
+		</div>
 	</svelte:fragment>
 
 	<TreadCard class="px-8 pt-12" showComments slot="details" tread={data.current} />

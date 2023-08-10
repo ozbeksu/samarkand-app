@@ -34,7 +34,6 @@
 
 <div bind:this={container}>
 	<Cover {bgColor} cover={user?.profile?.cover} {scrolling} />
-
 	<div class="px-8 pt-12 -mt-32">
 		<Avatar class="profile-image mb-4 w-36" {user} />
 

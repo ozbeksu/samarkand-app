@@ -3,8 +3,15 @@ body {
 }
 
 .inner-header {
-    width: var(--list-width);
-    @apply backdrop sticky top-0 z-40 border-b border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    width: calc(var(--list-width) - 0.55rem);
+    min-height: 94px;
+    @apply sticky top-0 z-40;
+}
+
+.no-scroll {
+    .inner-header {
+        width: var(--list-width);
+    }
 }
 
 .sidebar-col,
@@ -110,8 +117,10 @@ img {
 }
 
 .profile-cover {
+    @apply bg-no-repeat bg-top bg-cover;
     height: 16rem;
     transition: height 260ms ease-out;
+
 
     &.shrink {
         height: 8rem;

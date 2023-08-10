@@ -4,10 +4,10 @@
 }
 
 .layout {
+    @apply h-screen overflow-hidden antialiased;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr;
-    @apply h-screen overflow-hidden;
 }
 
 .icon-bar-col {
@@ -39,11 +39,6 @@
 .list-col {
     @apply scroll-height relative flex-col bg-light-950 dark:bg-dark-950 border-r border-brand;
     width: var(--list-width);
-
-    &.no-scroll {
-        @apply border-r border-black dark:border-white;
-        height: calc(100vh + 2rem);
-    }
 }
 
 .content-col {
