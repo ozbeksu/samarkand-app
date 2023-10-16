@@ -5,9 +5,9 @@ export async function get<T>(
 	endpoint: string,
 	params?: Record<string, string | number>
 ): Promise<T> {
-	const response = await fetch(toApiUrl(endpoint, params));
-
-	return await response.json();
+	return fetch(toApiUrl(endpoint, params))
+		.then((res) => res.json())
+		.catch((err) => console.error(err));
 }
 
 export async function post<T>(
@@ -15,9 +15,9 @@ export async function post<T>(
 	endpoint: string,
 	data?: Record<string, unknown>
 ): Promise<T> {
-	const response = await fetch(toApiUrl(endpoint), toPostData(data));
-
-	return await response.json();
+	return fetch(toApiUrl(endpoint), toPostData(data))
+		.then((res) => res.json())
+		.catch((err) => console.error(err));
 }
 
 export function toApiUrl(endpoint: string, params?: Record<string, string | number>): string {

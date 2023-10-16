@@ -10,8 +10,6 @@
 
 	export let user: DTO.User | undefined | null;
 	export let messages: DTO.Message[] | undefined | null;
-
-	console.log(user);
 </script>
 
 <Flex class="bg-light-700 dark:bg-dark-700 h-full">
